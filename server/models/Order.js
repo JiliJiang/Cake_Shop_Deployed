@@ -16,12 +16,7 @@ const orderSchema = new Schema({
     }
   ],
 
-  /* comments:[
-   { 
-     type: String, 
-     default: ''
-    }
-  ] */
+  
   
 });
 

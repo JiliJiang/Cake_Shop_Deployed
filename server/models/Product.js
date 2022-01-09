@@ -24,10 +24,12 @@ const productSchema = new Schema({
     min: 0,
     default: 0
   },
-  comments: [{
-    type: String,
-    default:""
-  }],
+  
+  comments: [
+    {type: String,
+    default:""}
+  ],
+
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category',

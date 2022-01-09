@@ -39,7 +39,7 @@ const resolvers = {
         });
 
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-
+        console.log("**************User", user)
         return user;
       }
 
@@ -52,6 +52,8 @@ const resolvers = {
           path: 'orders.products',
           populate: 'category'
         });
+
+        console.log("********************",user.orders.id(_id));
 
         return user.orders.id(_id);
       }
@@ -74,14 +76,14 @@ const resolvers = {
           description: products[i].description,
           images: [`${url}/images/${products[i].image}`]
         });
-        console.log("productPrice@@@@@@@@@", (products[i].price).toFixed(2))
+        /* console.log("productPrice@@@@@@@@@", (products[i].price).toFixed(2)) */
         
           const price = await stripe.prices.create({
             product: product.id,
             unit_amount: parseInt(products[i].price*100),
             currency: 'usd',
           });
-          console.log("price#########", price)
+          /* console.log("price#########", price) */
       
         line_items.push({
           price: price.id,
@@ -97,7 +99,7 @@ const resolvers = {
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${url}/`
       })
-      console.log("session%%%%%%%%%%%%%%%%%", session)
+      //console.log("session%%%%%%%%%%%%%%%%%", session)
       return { session: session.id };
     }catch(err){
         
@@ -131,6 +133,8 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
 
+
+
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, { new: true });
@@ -139,10 +143,10 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
 
-    updateProduct: async (parent, { _id, quantity }) => {
+    updateProduct: async (parent, { _id, quantity, comments }) => {
       const decrement = Math.abs(quantity) * -1;
 
-      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement, comments: comments  } }, { new: true });
     },
 
     login: async (parent, { email, password }) => {

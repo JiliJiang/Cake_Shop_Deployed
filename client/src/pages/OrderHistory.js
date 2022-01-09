@@ -50,18 +50,17 @@ function OrderHistory()
                     </div>
                     < br/>
                     <div>  
-                        <h3>Comments:</h3>
                         { comments.length > 0 && comments? 
                          comments.map((comment) => {
                          return (
+                        
                         <p className="text-history">
                           {comment.comment}
                         </p>
+                        
                          );}) 
                          : 
-                        <p className="text-history">
-                          You did not submit any comments.
-                        </p>}
+                        null}
                     </div>  
                 </div>
                   ))}

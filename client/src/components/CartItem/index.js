@@ -1,15 +1,20 @@
 import React from 'react';
 import { useState } from 'react';
+import { useMutation } from "@apollo/client";
 import { useStoreContext } from "../../utils/GlobalState";
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY, UPDATE_CART_COMMENTS } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
+import { UPDATE_PRODUCT } from "../../utils/mutations"
 import './style.css';
 
 const CartItem = ({ item }) =>
 {
 
-  const [, dispatch] = useStoreContext();
+  const [state, dispatch] = useStoreContext();
   const [comments, setComments] = useState([{}]);
+
+  //eslint-disable-next-line
+  const [updateProduct, {error}] = useMutation(UPDATE_PRODUCT);
 
   const removeFromCart = item =>
   {
@@ -53,16 +58,28 @@ const CartItem = ({ item }) =>
       setComments([...comments, { id: _id, comment: e.target[0].value }]);
       //const targetComments = comments.filter((comment) => comment.id === _id);
       //console.log("************", targetComments)
-      
+      const newComment = { id: _id, comment: e.target[0].value };
       dispatch(
         {
           type: UPDATE_CART_COMMENTS,
           _id: _id,
-          comments: [...comments, { id: _id, comment: e.target[0].value }]
+          comments: [...comments, newComment]
         }
-    );  
 
-    e.target[0].value = '';
+        );  
+        
+        //console.log("******",state);
+
+        //get product idbPromise
+        //find the product in the state
+        //const targetProduct = state.products.filter((product) => product._id===_id)[0];
+        //targetProduct.comments = [newComment];
+
+        //update db entry
+        //updateProduct (_id, targetProduct.quantity, newComment);
+
+        
+        e.target[0].value = '';
     }
     };
   

@@ -55,7 +55,9 @@ export const reducer = (state, action) => {
           if (action._id === product._id) {
             product.comments=action.comments
           } 
-          console.log("#####", product)   
+          console.log("#####", product)
+          
+          //use mutation to update product comment
           return product
         })
       };

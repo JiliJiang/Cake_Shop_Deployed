@@ -32,6 +32,7 @@ export const QUERY_ALL_PRODUCTS = gql`
       name
       description
       price
+      comments
       quantity
       category {
         name
