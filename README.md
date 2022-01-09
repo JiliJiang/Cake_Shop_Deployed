@@ -65,7 +65,11 @@ https://jili-cakeshop.herokuapp.com/  <br />
 
 ## Technologies
 
-  - [Apollo-sercer-express](https://www.apollographql.com/docs/react/essentials/setup.html)
+This application is built with the MERN stack, which includes the use of MongoDB, Express, React and Node.js. The backend of the application is built with GraphQL and Apollo Server, which uses queries and mutations to fetch and modify data from the MongoDB database.  This application uses Json Web Token to authenticate user information, and bcrypt to hash passwords. The application uses Apollo Provider so that its requests can communicate between REACT and the Apollo Server. The payment process in the application is handled by Stripe, a third party payment platform.  Finally, the application uses React Router to render multiple web pages, and is deployed to Heroku with full functions and features.
+
+In specific, this web application uses the following dependencies and technologies:
+
+  - [Apollo-server-express](https://www.apollographql.com/docs/react/essentials/setup.html)
   - [Jwt-decode](https://www.npmjs.com/package/jwt-decode)
   - [Bcrypt](https://www.npmjs.com/package/bcrypt)
   - [React](https://reactjs.org/)
