@@ -90,3 +90,7 @@ In specific, this web application uses the following dependencies and technologi
 ## License
 
 MIT <br />
+
+## Additional Information
+
+For the history of the development of this project and the contributions by team members, please visit https://github.com/JiliJiang/GroupProject3_draft
